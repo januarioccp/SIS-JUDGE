@@ -1,0 +1,259 @@
+\documentclass[10pt]{scrartcl}
+\usepackage[a4paper,left=1.8cm,right=1.8cm,top=2cm,bottom=2cm,heightrounded]{geometry}
+\usepackage[svgnames]{xcolor}
+\usepackage{setspace,booktabs}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tgschola}
+\usepackage{graphicx}
+\usepackage{wallpaper}
+\usepackage[normalem]{ulem} 
+\usepackage{microtype}
+\usepackage{frcursive}
+\hyphenpenalty100000
+\usepackage[all]{nowidow}
+\usepackage{background}
+\usepackage{tikz}
+\usepackage{datatool}
+\usepackage{array}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\pagenumbering{gobble}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\backgroundsetup{ angle=0, scale=1, opacity=.1, contents={
+    \begin{tikzpicture}[remember picture,overlay,shift=(current page.center)]
+      \node[inner sep=0pt]{\includegraphics[scale=1]{brasaoufba}};
+    \end{tikzpicture}
+  }
+}
+
+%
+\begin{document}
+\sloppy
+\DTLloaddb{processo}{relatorio.csv}
+\begin{center}
+\hfill Folha n$^\text{o}$: \rule{1cm}{0.4pt}
+
+	\begin{minipage}{0.06\textwidth}
+	\includegraphics[width=\textwidth]{brasaoufba} 
+	\end{minipage} 
+	\begin{minipage}{6cm}
+	\centering
+	\textbf{Universidade Federal da Bahia}\newline
+	Superintendência Acadêmica\newline
+	Secretaria Geral de Cursos
+	\end{minipage} 
+	\begin{minipage}{0.08\textwidth}
+	\includegraphics[width=\textwidth]{social}
+	\end{minipage} 
+
+	\rule{8.8cm}{1pt}
+
+\vspace{1cm}
+\DTLforeach{processo}{%
+\numero=Numero}{%
+\hfill Processo n$^\text{o}$: 23066.\numero
+\dtlbreak
+}
+\vspace{0.3cm}
+
+\textbf{APROVEITAMENTO DE ESTUDOS / ATIVIDADES}
+\begin{table}[h]
+\centering
+\setlength{\tabcolsep}{0.1em} % for the horizontal padding
+{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+\footnotesize
+\begin{tabular}{C{8.5cm}|c||c|c|c|c|c|c|c|c|C{5.5cm}}
+\hline
+\multicolumn{2}{c||}{\textbf{COMPONENTES CURRICULARES/ATIVIDADES - CURSADOS}} & 
+\multicolumn{9}{c}{\textbf{COMPONENTES CURRICULARES - DISPENSADOS}}\\
+\hline
+NOME & CH & \multicolumn{6}{c|}{CÓDIGO} & CH & NT & NOME
+\DTLforeach{processo}{%
+\nomea=NomeCursada,\cha=CHCursada,\ca=C1, \cb=C2,\cc=C3,\cd=C4,\ce=C5,\cf=C6,\chb=CHDispensada,\ntb=Natureza,\nomeb=NomeDispensada}{%
+	\DTLifnullorempty{\nomea}{\dtlbreak}{
+		\\ \hline \multicolumn{1}{l|}{\nomea} & \cha & \ca & \cb & \cc & \cd & \ce & \cf & \chb &\ntb & \nomeb}
+		}
+	\\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[h]
+\centering
+\setlength{\tabcolsep}{0.2em} % for the horizontal padding
+{\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\footnotesize
+\begin{tabular}{L{1.5cm}|L{6cm}|L{1.5cm}|L{2.5cm}|l}
+\hline
+\multicolumn{2}{c|}{DISPENSAS CONCEDIDAS} & 
+\multicolumn{2}{c|}{EQUIVALÊNCIA} & 
+CURRÍCULO A SER INTEGRALIZADO \\
+\hline
+Total: \DTLforeach{processo}{%
+\total=Total}{%
+\total
+\dtlbreak
+}
+& 
+Por extenso: \DTLforeach{processo}{%
+\extenso=Extenso}{%
+\extenso
+\dtlbreak
+}
+&  
+Ano: & 
+Semestre: &
+Grade:
+ \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+	\begin{minipage}{6cm}
+	\centering
+	\footnotesize
+	\textbf{APROVADO EM REUNIÃO PLENÁRIA DO COLEGIADO EM:} \newline
+
+	\vspace{0.5cm}
+
+	\DTLforeach{processo}{%
+	\dia=Dia,\mes=Mes,\ano=Ano}{%
+	\dia\ de \mes\ de \ano.
+	\dtlbreak
+	}
+	\end{minipage} 
+\hspace{1.5cm}
+		\begin{minipage}{8.5cm}
+		\centering
+		\footnotesize
+		{\renewcommand{\arraystretch}{6}% for the vertical padding
+		\begin{tabular}{|C{8.5cm}|}
+			\hline\\
+			\hline
+		\end{tabular}
+		}
+		
+		 \textbf{Assinatura e Carimbo do(a) Coordenador(a) do Curso}
+		\end{minipage} 
+
+\end{center}
+
+%%%%%%%%%%%%%%%%%%
+%					   %
+%	FOLHA DO PARECER     %%
+%					   %
+%%%%%%%%%%%%%%%%%%
+\newpage
+\hfill Folha n$^\text{o}$: \rule{1cm}{0.4pt}
+
+	\begin{minipage}{0.08\textwidth}
+	\includegraphics[width=\textwidth]{republica} 
+	\end{minipage} 
+	\begin{minipage}{5.5cm}
+	\centering
+	SERVI\c{C}O PÚBLICO FEDERAL
+	\end{minipage} 
+	\hfill
+	 \DTLforeach{processo}{%
+	\numero=Numero}{%
+	\hfill Processo n$^\text{o}$: 23066.\numero
+	\dtlbreak
+	}
+
+\vspace{1cm}
+\begin{center}
+\large
+Parecer ao Colegiado do Curso de Bacharelado em Ciência da Computa\c{c}ão. 
+\end{center}
+
+\textbf{Assunto}: Dispensa de Carga Horária Optativa\\
+
+Após análise da solicita\c{c}ão do requerente, e  com base no regulamento interno deste colegiado, sou favorável ao aproveitamento das seguintes componentes curriculares como carga horária optativa:
+\begin{itemize}
+\DTLforeach{processo}{%
+\nomea=NomeCursada,\cha=CHCursada,\ca=C1, \cb=C2,\cc=C3,\cd=C4,\ce=C5,\cf=C6,\chb=CHDispensada,\ntb=Natureza,\nomeb=NomeDispensada}{%
+\DTLifnullorempty{\nomea}{\dtlbreak}{\item \nomea\ - \cha\ horas}}
+\end{itemize}
+
+	\DTLforeach{processo}{%
+	\total=Total,\extenso=Extenso,\ano=Ano}{%
+	Totalizando \total\ (\extenso ) horas de carga horária optativa a serem dispensadas.
+	\dtlbreak
+	}
+
+\begin{center}
+\vspace{1cm}
+\rule{6cm}{0.5pt} \\
+\DTLforeach{processo}{%
+\parecerista=Parecerista,\dia=Dia,\mes=Mes,\ano=Ano}{%
+\textbf{\parecerista} \\
+	Salvador, \dia\ de \mes\ de \ano.
+	\dtlbreak
+	}
+\end{center}
+
+%%%%%%%%%%%%%%%%%
+%					%
+%	FOLHA DESPACHO     %%
+%					%
+%%%%%%%%%%%%%%%%%
+\newpage
+\hfill Folha n$^\text{o}$: \rule{1cm}{0.4pt}
+
+	\begin{minipage}{0.08\textwidth}
+	\includegraphics[width=\textwidth]{republica} 
+	\end{minipage} 
+	\begin{minipage}{5.5cm}
+	\centering
+	SERVI\c{C}O PÚBLICO FEDERAL
+	\end{minipage} 
+	\hfill
+	 \DTLforeach{processo}{%
+	\numero=Numero}{%
+	\hfill Processo n$^\text{o}$: 23066.\numero
+	\dtlbreak
+	}
+
+\vspace{1cm}
+\begin{center}
+\large
+DESPACHO
+\end{center}
+
+Ao NAREG - Núcleo de Admissão e de Registros de Gradua\c{c}ão.
+
+\vspace{1cm}
+
+Solicita\c{c}ão DEFERIDA, como consta em parecer em anexo. 
+
+Aprovado em Reunião Plenária do Colegiado do Curso de Bacharelado em Ciência da Computa\c{c}ão no dia \DTLforeach{processo}{%
+	\dia=Dia,\mes=Mes,\ano=Ano}{%
+	\dia\ de \mes\ de \ano.
+	\dtlbreak}
+
+\begin{flushright}
+\DTLforeach{processo}{%
+	\dia=Dia,\mes=Mes,\ano=Ano}{%
+	Salvador, \dia\ de \mes\ de \ano.
+	\dtlbreak
+	}
+\end{flushright}
+\vspace{1cm}
+
+\begin{center}
+\rule{6cm}{0.5pt} \\
+\textbf{Tiago de Oliveira Januario} \\
+Coordenador do Curso de Bacharelado\\
+ em Ciência da Computa\c{c}ão
+\end{center}
+
+
+
+\vspace{1cm}
+\end{document}
